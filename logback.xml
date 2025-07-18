@@ -1,42 +1,11 @@
-<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="https://tony19.github.io/logback-android/xml"
-    xsi:schemaLocation="https://tony19.github.io/logback-android/xml https://cdn.jsdelivr.net/gh/tony19/logback-android/logback.xsd">
-    <appender name="logcat" class="ch.qos.logback.classic.android.LogcatAppender">
-        <tagEncoder>
-            <pattern>%logger{36}</pattern>
-        </tagEncoder>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>[%-20thread] %msg</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} MDC=%X{user} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <appender name="Crashlytics" class="quickresto.webterminal.FirebaseCrashlyticsLogbackAppender">
-        <encoder>
-            <pattern>%d{"yyyy-MM-dd'T'HH:mm:ss.SSSXXX"} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <appender name="full-log" class="ru.quickresto.logback.FullLogAppender">
-        <encoder>
-            <pattern>%d{"yyyy-MM-dd'T'HH:mm:ss.SSSXXX"} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <appender name="flow-log" class="ru.quickresto.logback.FlowLogAppender">
-        <encoder>
-            <pattern>%d{"yyyy-MM-dd'T'HH:mm:ss.SSSXXX"} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <appender name="logcat-reader" class="quickresto.webterminal.log.LogcatReader">
-        <tag>Drivers10</tag>
-    </appender>
-
-    <root level="DEBUG">
-        <appender-ref ref="Crashlytics"/>
-        <appender-ref ref="logcat" />
-        <appender-ref ref="full-log"/>
-        <appender-ref ref="flow-log"/>
-        <appender-ref ref="logcat-reader"/>
+    <root level="debug">
+        <appender-ref ref="STDOUT"/>
     </root>
 </configuration>
